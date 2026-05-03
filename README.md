@@ -1,8 +1,7 @@
 # rsync 3.2.7 for SCO OpenServer 5
 
 A working build of [rsync 3.2.7](https://rsync.samba.org/) (October 2022)
-for **SCO OpenServer 5.0.7**, replacing the 3.1.2 build that's been the
-common-knowledge "newest possible" for years.
+for **SCO OpenServer 5.0.7**.
 
 ```
 $ ./rsync --version
@@ -14,15 +13,10 @@ Just want to run rsync on your SCO box? Skip to **[Install](#install)**.
 
 ## Why?
 
-The previously-circulated rsync build for SCO was 3.1.2 (2015). 3.2.7
-(2022) brings seven years of bug fixes, security patches, and protocol
-improvements — most importantly the better-tested incremental-recursion
-code and several CVE fixes that landed during the 3.2.x series.
-
-This build is the latest rsync that compiles cleanly with the GCC 2.95.3
-shipped on SCO, with only a handful of tiny C99→C89 compatibility
-patches. rsync 3.3.0 and later use enough modern C that GCC 2.95
-can't keep up.
+3.2.7 is the most recent rsync that compiles cleanly with the GCC
+2.95.3 shipped on SCO, with only a handful of tiny C99→C89
+compatibility patches. 3.3.0 and later use enough modern C that
+GCC 2.95 can't keep up.
 
 ## Install
 
