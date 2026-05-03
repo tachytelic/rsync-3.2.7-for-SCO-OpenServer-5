@@ -15,7 +15,7 @@ Just want to run rsync on your SCO box? Skip to **[Install](#install)**.
 ## Why?
 
 The newest publicly-circulated rsync binary for SCO has historically been
-3.1.2 (2015) — see [tachytelic.net's SCO OpenServer page](https://tachytelic.net/2017/07/sco-openserver-stuff/)
+3.1.2 (2015) — see [tachytelic.net's SCO OpenServer page](https://tachytelic.net/2017/07/sco-openserver-5-binaries/)
 for that one and the rest of the long-standing collection
 (bash, tar, wget, lzop). 3.2.7 (2022) brings seven years of bug fixes,
 security patches, and protocol improvements — most importantly the
