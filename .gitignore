@@ -1,0 +1,8 @@
+# Build artifacts
+rsync-*/
+rsync-*.tar.gz
+
+# Editor / OS
+*.swp
+*~
+.DS_Store
