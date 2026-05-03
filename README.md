@@ -14,13 +14,10 @@ Just want to run rsync on your SCO box? Skip to **[Install](#install)**.
 
 ## Why?
 
-The newest publicly-circulated rsync binary for SCO has historically been
-3.1.2 (2015) — see [tachytelic.net's SCO OpenServer page](https://tachytelic.net/2017/07/sco-openserver-5-binaries/)
-for that one and the rest of the long-standing collection
-(bash, tar, wget, lzop). 3.2.7 (2022) brings seven years of bug fixes,
-security patches, and protocol improvements — most importantly the
-better-tested incremental-recursion code and several CVE fixes that
-landed during the 3.2.x series.
+The previously-circulated rsync build for SCO was 3.1.2 (2015). 3.2.7
+(2022) brings seven years of bug fixes, security patches, and protocol
+improvements — most importantly the better-tested incremental-recursion
+code and several CVE fixes that landed during the 3.2.x series.
 
 This build is the latest rsync that compiles cleanly with the GCC 2.95.3
 shipped on SCO, with only a handful of tiny C99→C89 compatibility
@@ -140,3 +137,8 @@ released under the MIT license — see [LICENSE](LICENSE).
 
 The bundled `prebuilt/rsync` binary is rsync 3.2.7 built with the
 included patch and is therefore covered by the GPLv3.
+
+## See also
+
+- [tachytelic.net — SCO OpenServer 5 binaries](https://tachytelic.net/2017/07/sco-openserver-5-binaries/)
+  — index of compiled software available for SCO OpenServer 5.
