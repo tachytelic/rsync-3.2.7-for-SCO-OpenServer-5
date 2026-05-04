@@ -1,0 +1,61 @@
+diff -ruN rsync_clean/main.c rsync_patched/main.c
+--- rsync_clean/main.c	2022-10-02 16:54:59.000000000 +0000
++++ rsync_patched/main.c	2026-05-03 00:21:32.240875578 +0000
+@@ -171,6 +171,7 @@
+ {
+ 	char *shell = getenv("RSYNC_SHELL");
+ 	int status;
++	int ret;
+ 	pid_t pid;
+ 
+ 	if (!shell)
+@@ -184,7 +185,7 @@
+ 		_exit(1);
+ 	}
+ 
+-	int ret = wait_process(pid, &status, 0);
++	ret = wait_process(pid, &status, 0);
+ 	return ret < 0 ? -1 : status;
+ }
+ 
+@@ -1719,14 +1720,15 @@
+ int main(int argc,char *argv[])
+ {
+ 	int ret;
++#if defined(HAVE_SIGACTION) && defined(HAVE_SIGPROCMASK)
++	sigset_t sigmask;
++#endif
+ 
+ 	raw_argc = argc;
+ 	raw_argv = argv;
+ 
+ #ifdef HAVE_SIGACTION
+ # ifdef HAVE_SIGPROCMASK
+-	sigset_t sigmask;
+-
+ 	sigemptyset(&sigmask);
+ # endif
+ 	sigact.sa_flags = SA_NOCLDSTOP;
+diff -ruN rsync_clean/options.c rsync_patched/options.c
+--- rsync_clean/options.c	2022-09-10 20:14:42.000000000 +0000
++++ rsync_patched/options.c	2026-05-03 00:21:32.232875673 +0000
+@@ -1288,6 +1288,8 @@
+ static void create_refuse_error(int which)
+ {
+ 	const char *msg;
++	struct poptOption *op;
++	int n;
+ 	if (am_daemon)
+ 		msg = "The server is configured to refuse";
+ 	else if (am_server)
+@@ -1296,8 +1298,8 @@
+ 		msg = "This rsync does not support";
+ 
+ 	/* The "which" value is the index + OPT_REFUSED_BASE. */
+-	struct poptOption *op = &long_options[which - OPT_REFUSED_BASE];
+-	int n = snprintf(err_buf, sizeof err_buf, "%s --%s\n", msg, op->longName) - 1;
++	op = &long_options[which - OPT_REFUSED_BASE];
++	n = snprintf(err_buf, sizeof err_buf, "%s --%s\n", msg, op->longName) - 1;
+ 	if (op->shortName)
+ 		snprintf(err_buf + n, sizeof err_buf - n, " (-%c)\n", op->shortName);
+ }
